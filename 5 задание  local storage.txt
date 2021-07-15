@@ -1,0 +1,52 @@
+
+// JavaScript
+
+// Получаем данные по ключу myKey в localStorage
+let inputName = null;
+let name = localStorage.getItem('name');                 // Самая главная фишка в этом, получаем мы данные зарисанные при заходе на страницу в прошлый раз
+let lastdate = localStorage.getItem('lastdate');
+
+// Ищем кнопку, по нажатии на которую очищаем localStorage
+const btnClearNode = document.querySelector('.j-btn-clear');
+// Получение даты и времени
+const btnRequestNode = document.querySelector('.j-btn-request');
+
+function time () {
+  let Data = new Date();
+  Year = Data.getFullYear();
+  Month = Data.getMonth();
+  Day = Data.getDate();
+  let Hours = Data.getHours();
+  let Minutes = Data.getMinutes();
+ // Преобразуем месяца
+fMonth = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+
+// Вывод
+  let date = (`${Day} ${fMonth[Month]} ${Year} года. Время  ${Hours}:${Minutes}`);  
+  localStorage.setItem('lastdate', date);        // Записываем в  localStorage
+}
+time();  // Каждый раз идет вызов
+
+
+  if (!name) {
+ inputName = prompt('Добро пожаловать! Назовите, пожалуйста, ваше имя');
+ localStorage.setItem('name', inputName);
+ }
+
+else {
+  alert(`Добрый день, ${name}. Давно не виделись. В последний раз вы были у нас ${lastdate}`);
+}
+
+btnClearNode.addEventListener('click', () => {
+  localStorage.clear();
+  console.log('Данные из localStorage удалены');
+});
+
+______________________
+
+      HTML
+
+<button class="btn j-btn-clear">Очищаем localStorage</button>
+Вывод данных осуществляется в консоль
+
+

@@ -1,0 +1,28 @@
+
+// Внимательно посмотрите за очередностью выводимых в консоль данных
+  let random = null;
+
+      // Функция выполнения promise
+     // Создаем promise
+
+  const myPromise = new Promise((resolve, reject) => {  
+ setTimeout(() => { random = Math.ceil(Math.random() * 100)
+                 ;
+  if (random % 2 === 0)  {
+    resolve();
+  }
+    else {
+      reject();  }
+   }, 3000);    //  ВСЕ внутри setTimeout
+});
+
+  myPromise.then((sucsess) => {       // then и catch методы объекта myPromise
+    console.log(`Завершено успешно. Сгенерированное число - ${random}`);
+    })
+    myPromise.catch((error) => {
+      console.log(`Завершено с ошибкой. Сгенерированное число - ${random}`);
+    })
+
+
+
+

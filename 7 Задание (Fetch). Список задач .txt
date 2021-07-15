@@ -1,0 +1,64 @@
+const btn = document.querySelector('.j-btn');
+const input = document.querySelector('.input');
+const displayResult = document.querySelector('.result');
+let id = null;
+        
+// Функция, которая возвращаем fetch
+const useRequest = () => {
+  
+  return fetch('https://jsonplaceholder.typicode.com/users/3/todos')
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => { 
+    //json = JSON.parse(json);
+    return json; })
+    .catch(() => { console.log('error') });
+}
+
+btn.addEventListener('click', async () => {
+  console.log('start');
+  let obj = null;
+  const requestResult = await useRequest();
+  for (let i = 0; i < requestResult.length; i++) {
+    id = Number(input.value);          // число
+    if (requestResult[i].id === id) { // тоже число
+     obj = requestResult[i];
+     display(obj);
+     break;
+    }
+    else {
+    displayResult.innerHTML = 'Пользователь с указанным id не найден';
+    }
+  }
+//  console.log('requestResult', requestResult);
+  console.log('end');
+});
+
+function display(displayObj) { 
+          const cardBlock = `
+          <ul>
+          <li>userId: ${displayObj.userId},</li>
+          <li>id: ${displayObj.id},</li>
+          <li>title: ${displayObj.title}</li>
+          <li>completed: true</li>
+          </ul>
+          `; 
+        displayResult.innerHTML = cardBlock;  
+      }
+
+
+_______________________________________
+
+                  HTML
+
+<h1>Async/await</h1>
+
+<p class="result">
+  Вывод данных осуществляется в консоль
+</p>
+
+<input class='input' name="name" type='text'>
+
+<button class="btn j-btn">Получить список задач</button>
+

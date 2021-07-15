@@ -1,0 +1,21 @@
+body {
+  width: 350px;
+  margin: 0;
+  padding: 0 10px;
+
+  font-size: 14px;
+  font-family: "Arial", sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  padding: 10px;
+  border: 2px solid black;
+}
+td {
+  padding: 10px;
+  border: 2px solid black;
+}
